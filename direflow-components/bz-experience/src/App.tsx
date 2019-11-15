@@ -13,7 +13,7 @@ const App: FC<IProps> = props => {
   const dispatch = useContext(EventContext);
 
   const handleClick = () => {
-    const repo = new ExperiencesRepository('it')
+    const repo = new ExperiencesRepository('en')
     repo.getAllExperiences((experiences: Experience[]) => {
         console.log(experiences)
     })

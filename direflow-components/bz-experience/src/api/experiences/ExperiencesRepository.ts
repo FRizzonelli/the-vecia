@@ -13,6 +13,9 @@ export class ExperiencesRepository {
   private _EVENTS_URL = `${this._BASE_URL}/Event?pagenumber=1&pagesize=10&sort=desc`;
 
   private _FREE_PRICE = '0.00€';
+  private _NOT_AVAILABLE = 'N/A';
+  private _DEFAULT_LATITUDE = 46.71503;
+  private _DEFAULT_LONGITUDE = 11.65598;
 
   private locale: string;
 
@@ -27,11 +30,15 @@ export class ExperiencesRepository {
   }
 
   private getAllActivities() {
-    return makeRequest(this._ACTIVITIES_URL).then(res => res.Items.map(activity => this.serializeExperience(activity)));
+    return makeRequest(this._ACTIVITIES_URL).then(res =>
+      res.Items.map(activity => this.serializeExperience(activity)).filter(activity => activity != null)
+    );
   }
 
   private getAllEvents() {
-    return makeRequest(this._EVENTS_URL).then(res => res.Items.map(event => this.serializeExperience(event)));
+    return makeRequest(this._EVENTS_URL).then(res =>
+      res.Items.map(event => this.serializeExperience(event)).filter(event => event != null)
+    );
   }
 
   private serializeExperience(experience: any) {
@@ -39,47 +46,76 @@ export class ExperiencesRepository {
       let title;
       if (experience.Detail[this.locale] !== undefined && experience.Detail[this.locale].Title !== undefined) {
         title = experience.Detail[this.locale].Title;
+      } else {
+        title = this._NOT_AVAILABLE;
       }
 
       let description;
       if (experience.Detail[this.locale] !== undefined && experience.Detail[this.locale].BaseText !== undefined) {
         description = experience.Detail[this.locale].BaseText;
+      } else {
+        description = this._NOT_AVAILABLE;
       }
 
-      let price;
-      if (experience.Price !== undefined) {
-        price = experience.Price;
+      const price = experience.Price !== undefined ? experience.Price : this.getPrice();
+
+      const images = [];
+      const imageGallery = experience.ImageGallery;
+      if (imageGallery !== undefined) {
+        imageGallery.map((image) => {
+          images.push(image.ImageUrl);
+        });
       }
 
-      const gpsPoints = experience.GpsPoints;
-
-      const gpsPosition = gpsPoints.position;
       let startLatitude;
       let startLongitude;
-      if (gpsPosition !== undefined) {
-        if (gpsPosition.Latitude !== undefined) {
-          startLatitude = gpsPosition.Latitude;
-        }
-        if (gpsPosition.Longitude !== undefined) {
-          startLongitude = gpsPosition.Longitude;
-        }
-      }
-
-      const gpsEndPosition = gpsPoints.endposition;
       let endLatitude;
       let endLongitude;
-      if (gpsPosition !== undefined) {
-        if (gpsEndPosition.Latitude !== undefined) {
-          endLatitude = gpsEndPosition.Latitude;
+      const gpsPoints = experience.GpsPoints;
+      if (gpsPoints !== undefined) {
+        const gpsPosition = gpsPoints.position;
+        if (gpsPosition !== undefined) {
+          if (gpsPosition.Latitude !== undefined) {
+            startLatitude = gpsPosition.Latitude;
+          }
+          if (gpsPosition.Longitude !== undefined) {
+            startLongitude = gpsPosition.Longitude;
+          }
         }
-        if (gpsEndPosition.Longitude !== undefined) {
-          endLongitude = gpsEndPosition.Longitude;
+
+        const gpsEndPosition = gpsPoints.endposition;
+        if (gpsPosition !== undefined) {
+          if (gpsEndPosition.Latitude !== undefined) {
+            endLatitude = gpsEndPosition.Latitude;
+          }
+          if (gpsEndPosition.Longitude !== undefined) {
+            endLongitude = gpsEndPosition.Longitude;
+          }
         }
       }
 
-      return new Experience(title, description, price, startLatitude, startLongitude, endLatitude, endLongitude);
+      startLatitude = startLatitude === undefined ? this._DEFAULT_LATITUDE : startLatitude;
+      startLongitude = startLongitude === undefined ? this._DEFAULT_LONGITUDE : startLongitude;
+      endLatitude = endLatitude === undefined ? this._DEFAULT_LATITUDE : endLatitude;
+      endLongitude = endLongitude === undefined ? this._DEFAULT_LONGITUDE : endLongitude;
+
+      return new Experience(
+        title,
+        description,
+        price,
+        images,
+        startLatitude,
+        startLongitude,
+        endLatitude,
+        endLongitude
+      );
     } catch (e) {
+      console.log(`Error while serializing ${e}`);
       return null;
     }
+  }
+
+  private getPrice() {
+    return `${Math.floor(Math.random() * 100)}€`;
   }
 }
