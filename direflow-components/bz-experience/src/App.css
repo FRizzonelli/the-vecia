@@ -1,8 +1,8 @@
 .app {
   width: 750px;
-  height: 350px;
+  height: 150px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   border-radius: 5px;
   border: 1px solid #E6EEF0;
