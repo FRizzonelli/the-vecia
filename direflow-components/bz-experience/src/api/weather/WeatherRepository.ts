@@ -1,60 +1,39 @@
-import { makeODHRequest } from '../apiHelper';
-import { Station, Weather } from './entities/weatherEntities';
+import { makeRequest } from '../apiHelper';
+import { Weather } from './entities/weatherEntities';
 
 /**
  * Class responsible of providing weather data for all the parts of the app.
- * 
+ *
  * This repository pattern implementation is very basic and it doesn't leverage on the Typescript
  * language features mainly for time problems.
  */
 export class WeatherRepository {
-  private _BASE_URL = 'http://ipchannels.integreen-life.bz.it/meteorology/rest';
+  private _API_KEY = '8983b2704136dd20c5b462a91f852738';
+  private _BASE_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${this._API_KEY}&units=metric`;
 
-  private _GET_STATION_DETAILS_URL_PATH = 'get-station-details';
+  private _LATITUDE_URL_PARAM = 'lat';
+  private _LONGITUDE_URL_PARAM = 'lon';
 
-  private _GET_RECORDS_URL_PATH = 'get-records';
-  private _GET_RECORDS_STATION_URL_PARAM = 'station';
-  private _GET_RECORDS_NAME_URL_PARAM = 'name';
-  private _GET_RECORDS_SECONDS_URL_PARAM = 'seconds';
+  private _DEFAULT_TEMPERATURE = '0°C';
+  private _DEFAULT_HUMIDITY = '0%';
 
-  private _DEFAULT_AIR_TEMPERATURE = '25C';
-  private _DEFAULT_AIR_HUMIDITY = '60%';
+  private requestInit: RequestInit = {
+    method: 'GET'
+  };
 
-  public async getAllStationsDetails(onDataLoaded: (stations: Station[]) => any) {
+  public async getWeatherAt(latitude: string, longitude: string, onDataLoaded: (stations: Weather) => any) {
     onDataLoaded(
-      await makeODHRequest(`${this._BASE_URL}/${this._GET_STATION_DETAILS_URL_PATH}`).then(res =>
-        res.map((station: any) => this.serializeStation(station))
-      )
+      await makeRequest(
+        `${this._BASE_URL}&${this._LATITUDE_URL_PARAM}=${latitude}&${this._LONGITUDE_URL_PARAM}=${longitude}`,
+        this.requestInit
+      ).then(weather => this.serializeWeather(weather))
     );
-  }
-
-  public async getLastWeatherByStation(station: Station, onDataLoaded: (weather: Weather) => any) {
-    onDataLoaded(
-      await makeODHRequest(
-        `${this._BASE_URL}/${this._GET_RECORDS_URL_PATH}?${this._GET_RECORDS_STATION_URL_PARAM}=${station.id}&${this._GET_RECORDS_NAME_URL_PARAM}=air-temperature&${this._GET_RECORDS_SECONDS_URL_PARAM}=1`
-      ).then(res =>
-        this.serializeWeather({ 'air-temperature': this.getAirTemperature(), 'air-humidity': this.getAirHumidity() })
-      )
-    );
-  }
-
-  private serializeStation(station: any) {
-    return new Station(station.id, station.latitude, station.longitude);
   }
 
   private serializeWeather(weather: any) {
-    const airTemperature =
-      weather['air-temperature'] != null ? weather['air-temperature'] : this._DEFAULT_AIR_TEMPERATURE;
-    const airHumidity = weather['air-humidity'] != null ? weather['air-humidity'] : this._DEFAULT_AIR_HUMIDITY;
+    const temperature = weather.main.temp != null ? `${weather.main.temp}°C` : this._DEFAULT_TEMPERATURE;
+    const humidity = weather.main.humidity != null ? `${weather.main.humidity}%` : this._DEFAULT_HUMIDITY;
 
-    return new Weather(airTemperature, airHumidity);
-  }
-
-  private getAirTemperature() {
-    return `${Math.floor(Math.random() * 30)}°C`;
-  }
-
-  private getAirHumidity() {
-    return `${Math.floor(Math.random() * 100)}%`;
+    return new Weather(temperature, humidity);
   }
 }

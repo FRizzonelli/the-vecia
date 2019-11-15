@@ -1,13 +1,16 @@
 /**
- * Makes a request to the Open Data Hub APIs.
- * @param request
+ * Makes a request to a specified endpoint.
  */
-export async function makeODHRequest(request: RequestInfo): Promise<any> {
-  return fetch(request).then((response) => {
-    const jsonResponse = response.json();
+export async function makeRequest(request: RequestInfo, init?: RequestInit): Promise<any> {
+  return fetch(request, init)
+    .then((response) => {
+      console.log(`Response succesful from request at url ${request}`);
 
-    console.log(`Response gotten from ODH at url ${request} -> ${jsonResponse}`);
+      return response.json();
+    })
+    .then((jsonResponse) => {
+      console.log(`Response content: ${jsonResponse}`);
 
-    return jsonResponse;
-  });
+      return jsonResponse;
+    });
 }
