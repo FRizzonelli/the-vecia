@@ -4,6 +4,8 @@ import { IComponentProperties, IComponentAttributes } from './componentPropertie
 import styles from './App.css';
 import { WeatherRepository } from './api/weather/WeatherRepository';
 import { Weather } from './api/weather/entities/weatherEntities';
+import { ExperiencesRepository } from './api/experiences/ExperiencesRepository';
+import { Experience } from './api/experiences/entities/experiencesEntities';
 
 interface IProps extends IComponentProperties, IComponentAttributes {}
 
@@ -11,6 +13,10 @@ const App: FC<IProps> = props => {
   const dispatch = useContext(EventContext);
 
   const handleClick = () => {
+    const repo = new ExperiencesRepository('it')
+    repo.getAllExperiences((experiences: Experience[]) => {
+        console.log(experiences)
+    })
     const event = new Event('my-event');
     dispatch(event);
   };

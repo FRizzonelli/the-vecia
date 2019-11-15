@@ -9,7 +9,7 @@ export async function makeRequest(request: RequestInfo, init?: RequestInit): Pro
       return response.json();
     })
     .then((jsonResponse) => {
-      console.log(`Response content: ${jsonResponse}`);
+      console.log(`Response content: ${JSON.stringify(jsonResponse)}`);
 
       return jsonResponse;
     });
