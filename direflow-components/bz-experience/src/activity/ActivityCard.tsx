@@ -34,11 +34,11 @@ function ActivityCard(props) {
 
   return (
     <Styled styles={styles}>
-      <Card className="card">
+      <Card className='card'>
         <CardActionArea>
           <CardMedia src='/img/horse.jpg' title='mele' />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant='h5' component='h2'>
               {activity.title}
             </Typography>
           </CardContent>
@@ -47,12 +47,12 @@ function ActivityCard(props) {
           <MuiExpansionPanel
             square={true}
             elevation={0}
-            expanded={expanded === "panel1"}
-            onChange={handleChange("panel1")}
+            expanded={expanded === 'panel1'}
+            onChange={handleChange('panel1')}
           >
             <MuiExpansionPanelSummary
-              aria-controls="panel1d-content"
-              id="panel1d-header"
+              aria-controls='panel1d-content'
+              id='panel1d-header'
             >
               <div className="icon-container">
                 <div className="price-duration-container">

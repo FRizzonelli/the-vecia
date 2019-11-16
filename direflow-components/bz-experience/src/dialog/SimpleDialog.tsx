@@ -1,4 +1,5 @@
-import { Button, DialogContent, Typography } from "@material-ui/core";
+import { Button, DialogContent } from "@material-ui/core";
+// import {  Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Styled } from "direflow-component";
@@ -28,16 +29,16 @@ function SimpleDialog(props) {
   };
 
   const renderDays = days.map((day: { date: Moment }, id) => (
-    <div className="day-container" key={id}>
-      <p className="day-title">{moment(day.date).format("DD MMMM")}</p>
-      <div className="day-events-container">{renderActivities(day)}</div>
+    <div className='day-container' key={id}>
+      <p className='day-title'>{moment(day.date).format('DD MMMM')}</p>
+      <div className='day-events-container'>{renderActivities(day)}</div>
     </div>
   ));
 
   function renderActivities(day) {
     const dayActivities = activities;
     return (
-      <div>
+      <div className='card-container'>
         {dayActivities.map((act, id) => (
           <div key={id}>
             <ActivityCard
@@ -63,20 +64,17 @@ function SimpleDialog(props) {
       maxWidth={days.length > 2 ? "lg" : "md"}
     >
       <Styled styles={styles}>
-        <div>
-          <DialogTitle id="simple-dialog-title">
+        <div className='dialog-main-container'>
+          <DialogTitle id='simple-dialog-title'>
             Choose your activities!
           </DialogTitle>
           <DialogContent>
-            <div className="container">{renderDays}</div>
+            <div className='days-list-container'>{renderDays}</div>
           </DialogContent>
-          <div className="footer">
-            <Typography>{`${pickedActivities.length} attività`}</Typography>
-            <Typography>{`Totale ${sumBy(
-              pickedActivities,
-              a => a.price
-            )}€`}</Typography>
-            <Button variant="contained" color="primary" onClick={handleClick}>
+          <div className='footer'>
+            <h3>{`${pickedActivities.length} attività`}</h3>
+            <h3>{`Totale ${sumBy( pickedActivities, a => a.price)}€`}</h3>
+            <Button variant='contained' color='primary' onClick={handleClick}>
               Compra
             </Button>
           </div>
