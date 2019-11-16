@@ -1,6 +1,24 @@
-.container {
+.dialog-main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.MuiDialogContent-root {
+  max-height: 640px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.days-list-container {
   display: flex;
   flex-direction: row;
+  max-height: 600px;
+  overflow-y: hidden;
   /* align-items: center;
   border-radius: 5px;
   border: 1px solid #e6eef0;
@@ -22,14 +40,11 @@
 }
 
 .day-container {
-  padding: 0 48px;
+  padding: 0 48px 0 48px;
 }
 
 .day-events-container {
-  width: 420px;
   height: 644px;
-  left: 0px;
-  top: 51px;
   overflow-y: scroll;
   background: #ffffff;
   /* box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2),
@@ -37,14 +52,24 @@
     inset 0px 6px 10px rgba(0, 0, 0, 0.14); */
 }
 
+.card-container{
+  padding: 0 16px 128px 16px;
+}
+
+
 .footer {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
   left: 0px;
   bottom: 0px;
-  padding: 24px;
+  padding: 24px 0;
   background: #eaeec8;
+  box-sizing: border-box;
+}
+
+.footer, h3{
+  padding-right: 32px;
 }

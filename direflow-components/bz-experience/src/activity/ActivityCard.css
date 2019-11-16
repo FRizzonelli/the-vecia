@@ -1,11 +1,13 @@
 .card {
   max-width: 345px;
-  margin: 16px;
+  margin: 0 0 32px 0;
 }
+
 .media {
   height: 140;
   width: 285;
 }
+
 .icon-label {
   display: flex;
   flex-direction: row;
