@@ -18,12 +18,26 @@
   margin: -16px;
 }
 
+input {
+  border-width: 0px;
+  border-radius: 8px;
+  padding: 3px 5px;
+  box-shadow: 0 4px 4px 0 #375c821c;
+  width: 600px;
+  height: 36px;
+  background-color: #E8E8E8;
+  font-family: 'Roboto';
+  font-size: 16px;
+  margin-top: 4px;
+}
+
 .date-picker {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .button {
-  background-color: #A9BF02; /* Green */
+  background-color: #A9BF02;
+  /* Green */
   border: none;
   color: white;
   padding: 8px 16px;
@@ -33,4 +47,10 @@
   display: inline-block;
   font-size: 16px;
   margin-top: 16px;
+  height: 36px;
+  box-shadow: 0 4px 4px 0 #375c821c;
+}
+
+.highlight {
+  color: #A9BF02;
 }

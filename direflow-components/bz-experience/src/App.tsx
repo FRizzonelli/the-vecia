@@ -50,7 +50,7 @@ function App(props) {
         <Grid container direction="column" justify="flex-start" alignItems="flex-start">
           <Grid item xs={12}>
             <img className="logo" src="https://www.suedtirol.info/static/img/relaunch2018/panorama-footer.svg"></img>
-            <Typography variant="h2">Vivi esperienze uniche</Typography>
+            <Typography variant="h2">Vivi esperienze uniche a <span className="highlight">Bressanone</span></Typography>
             <Typography variant="body1">
               Puoi vedere tutte le attività nei dintorni che ti faranno immergere nella cultura della popolazione.
             </Typography>
