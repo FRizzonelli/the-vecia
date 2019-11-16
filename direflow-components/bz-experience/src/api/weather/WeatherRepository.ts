@@ -1,6 +1,12 @@
 import { makeRequest } from '../apiHelper';
 import { Weather } from './entities/weatherEntities';
 
+const weatherConditionsThatNeedWarning = ['rain', 'snow', 'mist'];
+
+const weatherDescriptions = [
+  'Warning, there is an high chance of rain',
+  'Looks like is gonna snow, be cautious'];
+
 /**
  * Class responsible of providing weather data for all the parts of the app.
  *
@@ -14,11 +20,12 @@ export class WeatherRepository {
   private _LATITUDE_URL_PARAM = 'lat';
   private _LONGITUDE_URL_PARAM = 'lon';
 
+  private _DEFAULT_DESCRIPTION = '';
   private _DEFAULT_TEMPERATURE = '0°C';
   private _DEFAULT_HUMIDITY = '0%';
 
   private requestInit: RequestInit = {
-    method: 'GET',
+    method: 'GET'
   };
 
   public async getWeatherAt(latitude: string, longitude: string, onDataLoaded: (stations: Weather) => any) {
@@ -31,9 +38,17 @@ export class WeatherRepository {
   }
 
   private serializeWeather(weather: any) {
+    const description =
+      weather.weather[0].description !== undefined ? weather.weather[0].description : this._DEFAULT_DESCRIPTION;
     const temperature = weather.main.temp !== undefined ? `${weather.main.temp}°C` : this._DEFAULT_TEMPERATURE;
     const humidity = weather.main.humidity !== undefined ? `${weather.main.humidity}%` : this._DEFAULT_HUMIDITY;
 
-    return new Weather(temperature, humidity);
+    return new Weather(this.computeDescription(description), temperature, humidity);
+  }
+
+  private computeDescription(description) {
+    if (weatherConditionsThatNeedWarning.filter(value => value.includes(description)).length > 0) return weatherDescriptions[Math.floor(Math.random() * weatherDescriptions.length)];
+
+    return '';
   }
 }
