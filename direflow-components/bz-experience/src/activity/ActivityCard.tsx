@@ -26,7 +26,10 @@ function ActivityCard(props) {
   const [expanded, setExpanded] = React.useState<string | false>('');
   const [weather, updateWeather] = React.useState<Weather>(null);
 
-  const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean) => {
+  const handleChange = (panel: string) => (
+    event: React.ChangeEvent<{}>,
+    newExpanded: boolean
+  ) => {
     setExpanded(newExpanded ? panel : false);
   };
 
@@ -50,7 +53,19 @@ function ActivityCard(props) {
 
   return (
     <Styled styles={styles}>
-      <Card className="card">
+      <Card
+        className="card"
+        onClick={handleJoin}
+        style={
+          isPicked
+            ? {
+                borderWidth: 4,
+                borderColor: "#50742F",
+                borderStyle: "solid"
+              }
+            : {}
+        }
+      >
         <CardActionArea>
           <img className="card-image" src={activity.images[0]} />
           <CardContent>
@@ -64,10 +79,13 @@ function ActivityCard(props) {
           <MuiExpansionPanel
             square={true}
             elevation={0}
-            expanded={expanded === 'panel1'}
-            onChange={handleChange('panel1')}
+            expanded={expanded === "panel1"}
+            onChange={handleChange("panel1")}
           >
-            <MuiExpansionPanelSummary aria-controls="panel1d-content" id="panel1d-header">
+            <MuiExpansionPanelSummary
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+            >
               <div className="icon-container">
                 <div className="price-duration-container">
                   <div className="icon-label">
@@ -78,19 +96,31 @@ function ActivityCard(props) {
                     <AccessTimeIcon />
                     <Typography>{`${activity.duration || 1}h`}</Typography>
                   </div>
-                  <div className="icon-label">{isPicked && <CheckCircleIcon />}</div>
+                  <div className="icon-label">
+                    {isPicked && <CheckCircleIcon htmlColor="#50742F"/>}
+                  </div>
                 </div>
                 <div className="icon-expand">
-                  {expanded === 'panel1' ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                  {expanded === "panel1" ? (
+                    <KeyboardArrowUpIcon />
+                  ) : (
+                    <KeyboardArrowDownIcon />
+                  )}
                 </div>
               </div>
             </MuiExpansionPanelSummary>
             <MuiExpansionPanelDetails>
               <div>
-                <div dangerouslySetInnerHTML={{ __html: activity.description }} />
+                <div
+                  dangerouslySetInnerHTML={{ __html: activity.description }}
+                />
                 <div className="description-container">
                   {!isPicked && (
-                    <Button variant="contained" color="primary" onClick={handleJoin}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleJoin}
+                    >
                       Partecipa
                     </Button>
                   )}

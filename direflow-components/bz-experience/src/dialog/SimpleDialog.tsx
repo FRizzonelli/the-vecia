@@ -47,9 +47,23 @@ function SimpleDialog(props) {
             <ActivityCard
               activity={act}
               onToggleActivityPresence={act => {
-                setPickedActivities([...pickedActivities, act]);
+                if (
+                  pickedActivities.filter(
+                    experience => experience.title === act.title
+                  ).length > 0
+                ) {
+                  setPickedActivities(
+                    pickedActivities.filter(pa => pa.title !== act.title)
+                  );
+                } else {
+                  setPickedActivities([...pickedActivities, act]);
+                }
               }}
-              isPicked={pickedActivities.filter(experience => experience.title === act.title).length > 0}
+              isPicked={
+                pickedActivities.filter(
+                  experience => experience.title === act.title
+                ).length > 0
+              }
             />
           </div>
         ))}
@@ -57,7 +71,7 @@ function SimpleDialog(props) {
     );
   }
 
-  function handleClick() {}
+  function handleShopActivities() {}
 
   return (
     <Dialog
@@ -69,6 +83,9 @@ function SimpleDialog(props) {
     >
       <Styled styles={styles}>
         <div className="dialog-main-container">
+          <div className="pattern">
+            <img src="./mountains.png" style={{ height: 200 }} />
+          </div>
           <DialogTitle id="simple-dialog-title">
             Choose your activities!
           </DialogTitle>
@@ -78,7 +95,11 @@ function SimpleDialog(props) {
           <div className="footer">
             <h3>{`${pickedActivities.length} attività`}</h3>
             <h3>{`Totale ${sumBy(pickedActivities, a => a.price)}€`}</h3>
-            <Button variant="contained" color="primary" onClick={handleClick}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleShopActivities}
+            >
               Compra
             </Button>
           </div>

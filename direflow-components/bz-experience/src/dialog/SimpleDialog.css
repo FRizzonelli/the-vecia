@@ -32,7 +32,9 @@
   font-size: 34px;
   line-height: 40px;
   /* identical to box height */
-  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   letter-spacing: 0.25px;
 
@@ -52,10 +54,14 @@
     inset 0px 6px 10px rgba(0, 0, 0, 0.14); */
 }
 
-.card-container{
+.card-container {
   padding: 0 16px 128px 16px;
 }
 
+.pattern {
+  position: absolute;
+  top: 0;
+}
 
 .footer {
   /* position: absolute; */
@@ -70,6 +76,7 @@
   box-sizing: border-box;
 }
 
-.footer, h3{
+.footer,
+h3 {
   padding-right: 32px;
 }
