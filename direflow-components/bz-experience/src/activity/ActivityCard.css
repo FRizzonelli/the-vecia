@@ -1,25 +1,67 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto";
+}
+
 .card {
   max-width: 345px;
-  margin: 16px;
+  margin: 0 0 16px 0;
 }
+
+.card-picked {
+  border-width: 2;
+  border-color: blueviolet;
+  border-radius: 8;
+}
+
 .media {
   height: 140;
   width: 285;
 }
+
 .icon-label {
   display: flex;
   flex-direction: row;
+  padding-right: 32px;
 }
-.icon-expand {
-  min-width: 150;
-  margin: auto;
+
+.MuiSvgIcon-root {
+  margin-right: 8px;
 }
+
 .icon-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  justify-content: space-between;
+}
+
+.price-duration-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-expand {
+  justify-self: end;
 }
 .description-container {
   display: flex;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-family: "Roboto";
+}
+
+.description-container,
+p {
+  margin-top: 0;
+}
+
+.card-image {
+  width: 345px;
+  height: 200px;
 }

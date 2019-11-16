@@ -1,6 +1,24 @@
-.container {
+.dialog-main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.MuiDialogContent-root {
+  max-height: 640px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+.days-list-container {
   display: flex;
   flex-direction: row;
+  max-height: 600px;
+  overflow-y: hidden;
   /* align-items: center;
   border-radius: 5px;
   border: 1px solid #e6eef0;
@@ -8,16 +26,26 @@
   box-sizing: border-box;
   background-color: white;
   box-shadow: 0 4px 9px 0 #375c821c; */
-  font-family: "PT Sans", sans-serif;
+}
+
+.recap-list-container {
+  max-height: 600px;
+  /* align-items: center;
+  border-radius: 5px;
+  border: 1px solid #e6eef0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 4px 9px 0 #375c821c; */
 }
 
 .day-title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 34px;
   line-height: 40px;
   /* identical to box height */
+  font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   letter-spacing: 0.25px;
 
@@ -25,13 +53,41 @@
 }
 
 .day-container {
-  width: 420px;
+  padding: 0 16px 0 16px;
+}
+
+.day-events-container {
   height: 644px;
-  left: 0px;
-  top: 51px;
   overflow-y: scroll;
   background: #ffffff;
-  box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2),
+  /* box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2),
     inset 0px 1px 18px rgba(0, 0, 0, 0.12),
-    inset 0px 6px 10px rgba(0, 0, 0, 0.14);
+    inset 0px 6px 10px rgba(0, 0, 0, 0.14); */
+}
+
+.card-container {
+  padding: 0 16px 128px 16px;
+}
+
+.pattern {
+  position: absolute;
+  top: 0;
+}
+
+.footer {
+  /* position: absolute; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  padding: 24px 0;
+  background: #eaeec8;
+  box-sizing: border-box;
+}
+
+.footer,
+h3 {
+  padding-right: 32px;
 }

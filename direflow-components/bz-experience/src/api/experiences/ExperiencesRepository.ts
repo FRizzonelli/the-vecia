@@ -1,6 +1,19 @@
 import { makeRequest } from '../apiHelper';
 import { Experience } from './entities/experiencesEntities';
 
+const keywords = [
+  'nature',
+  'landscape',
+  'mountain',
+  'skiing',
+  'snow',
+  'alps',
+  'cows',
+  'sheeps',
+  'pasta',
+  'food',
+];
+
 /**
  * Class responsible of providing the experiences data throughout the app.
  *
@@ -59,13 +72,7 @@ export default class ExperiencesRepository {
 
       const price = experience.Price !== undefined ? experience.Price : this.getPrice();
 
-      const images = [];
-      const imageGallery = experience.ImageGallery;
-      if (imageGallery !== undefined) {
-        imageGallery.map((image) => {
-          images.push(image.ImageUrl);
-        });
-      }
+      const images = [`https://source.unsplash.com/1600x900/?${keywords[Math.floor(Math.random() * keywords.length)]}`];
 
       let startLatitude;
       let startLongitude;
@@ -116,6 +123,6 @@ export default class ExperiencesRepository {
   }
 
   private getPrice() {
-    return Math.floor(Math.random() * 100);
+    return Math.floor(Math.random() * 40);
   }
 }

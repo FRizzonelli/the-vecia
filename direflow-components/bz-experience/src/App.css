@@ -1,63 +1,56 @@
 .app {
   width: 650px;
-  height: 150px;
+  height: auto;
   display: flex;
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
   border: 1px solid #E6EEF0;
-  padding: 20px;
+  padding: 16px;
   box-sizing: border-box;
   background-color: white;
   box-shadow: 0 4px 9px 0 #375c821c;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Roboto';
 }
 
-.header-title {
-  height: 50px;
-  line-height: 50px;
-  font-size: 36px;
-  color: #444;
-  text-align: center;
-  font-family: 'Noto Sans JP', sans-serif;
+.logo {
+  transform: rotate(180deg);
+  margin: -16px;
 }
 
-.sub-title {
-  height: 35px;
-  line-height: 35px;
-  font-size: 26px;
-  margin-top: 35px;
-  color: #444;
-  text-align: center;
+input {
+  border-width: 0px;
+  border-radius: 8px;
+  padding: 3px 5px;
+  box-shadow: 0 4px 4px 0 #375c821c;
+  width: 600px;
+  height: 36px;
+  background-color: #E8E8E8;
+  font-family: 'Roboto';
+  font-size: 16px;
+  margin-top: 4px;
 }
 
-.todo-list {
-  display: flex;
-  justify-content: center;
-}
-
-.todo-title {
-  height: 25px;
-  line-height: 25px;
-  font-size: 18px;
-  color: #614444;
+.date-picker {
+  margin-top: 16px;
 }
 
 .button {
-  width: 150px;
-  height: 45px;
-  border-radius: 5px;
-  background-color: #223a7c;
+  background-color: #A9BF02;
+  /* Green */
+  border: none;
   color: white;
-  box-shadow: 2px 2px 5px #16314d98;
-  margin-top: 25px;
-  outline: none;
-  border: 0;
-  cursor: pointer;
-  transition: 0.3s;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 16px;
+  height: 36px;
+  box-shadow: 0 4px 4px 0 #375c821c;
 }
 
-.button:hover {
-  box-shadow: 4px 4px 8px #16314d63;
-  background-color: #40558f;
+.highlight {
+  color: #A9BF02;
 }
