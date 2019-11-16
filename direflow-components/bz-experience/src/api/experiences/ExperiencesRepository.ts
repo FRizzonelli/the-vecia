@@ -8,7 +8,7 @@ import { Experience } from './entities/experiencesEntities';
  * lead to this decision.
  */
 export default class ExperiencesRepository {
-  private _BASE_URL = 'http://tourism.opendatahub.bz.it/api';
+  private _BASE_URL = 'https://tourism.opendatahub.bz.it/api';
   private _ACTIVITIES_URL = `${this._BASE_URL}/Activity?pagenumber=1&pagesize=10&activitytype=1023`;
   private _EVENTS_URL = `${this._BASE_URL}/Event?pagenumber=1&pagesize=10&sort=desc`;
 
