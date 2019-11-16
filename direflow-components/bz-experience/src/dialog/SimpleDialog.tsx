@@ -1,13 +1,15 @@
-import { DialogContent } from "@material-ui/core";
+import { Button, DialogContent, Typography } from "@material-ui/core";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { Styled } from "direflow-component";
+import sumBy from "lodash.sumby";
 import moment, { Moment } from "moment";
-import React from "react";
+import React, { useState } from "react";
 import ActivityCard from "../activity/ActivityCard";
 import styles from "./SimpleDialog.css";
 
 function SimpleDialog(props) {
+  const [pickedActivities, setPickedActivities] = useState([]);
   const { onClose, open, startingDate, endingDate, activities } = props;
 
   const days = [];
@@ -41,7 +43,7 @@ function SimpleDialog(props) {
             <ActivityCard
               activity={act}
               onToggleActivityPresence={act => {
-                console.log(act);
+                setPickedActivities([...pickedActivities, act]);
               }}
             />
           </div>
@@ -49,6 +51,8 @@ function SimpleDialog(props) {
       </div>
     );
   }
+
+  function handleClick() {}
 
   return (
     <Dialog
@@ -66,6 +70,16 @@ function SimpleDialog(props) {
           <DialogContent>
             <div className="container">{renderDays}</div>
           </DialogContent>
+          <div className="footer">
+            <Typography>{`${pickedActivities.length} attività`}</Typography>
+            <Typography>{`Totale ${sumBy(
+              pickedActivities,
+              a => a.price
+            )}€`}</Typography>
+            <Button variant="contained" color="primary" onClick={handleClick}>
+              Compra
+            </Button>
+          </div>
         </div>
       </Styled>
     </Dialog>
