@@ -11,11 +11,7 @@ const keywords = [
   'cows',
   'sheeps',
   'pasta',
-  'speck',
-  'bolzano',
-  'bressanone',
-  'brunico',
-  'merano'
+  'food',
 ];
 
 /**

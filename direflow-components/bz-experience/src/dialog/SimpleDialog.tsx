@@ -46,6 +46,7 @@ function SimpleDialog(props) {
               onToggleActivityPresence={act => {
                 setPickedActivities([...pickedActivities, act]);
               }}
+              isPicked={pickedActivities.filter(experience => experience.title === act.title).length > 0}
             />
           </div>
         ))}
