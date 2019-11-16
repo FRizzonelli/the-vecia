@@ -1,0 +1,25 @@
+.card {
+  max-width: 345px;
+  margin: 16px;
+}
+.media {
+  height: 140;
+  width: 285;
+}
+.icon-label {
+  display: flex;
+  flex-direction: row;
+}
+.icon-expand {
+  min-width: 150;
+  margin: auto;
+}
+.icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.description-container {
+  display: flex;
+  align-items: flex-end;
+}

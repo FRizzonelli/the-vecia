@@ -64,7 +64,12 @@ const App: FC<IProps> = props => {
             Cerca
           </Button>
         </MuiPickersUtilsProvider>
-        <SimpleDialog open={open} onClose={handleClose} />
+        <SimpleDialog
+          open={open}
+          onClose={handleClose}
+          startingDate={startingDate}
+          endingDate={endingDate}
+        />
       </div>
     </Styled>
   );
