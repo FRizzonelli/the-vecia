@@ -26,9 +26,9 @@ function SimpleDialog(props) {
   };
 
   const renderDays = days.map((day: { date: Moment }, id) => (
-    <div key={id}>
+    <div className="day-container" key={id}>
       <p className="day-title">{moment(day.date).format("DD MMMM")}</p>
-      <div className="day-container">{renderActivities(day)}</div>
+      <div className="day-events-container">{renderActivities(day)}</div>
     </div>
   ));
 

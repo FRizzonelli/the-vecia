@@ -8,16 +8,13 @@
   box-sizing: border-box;
   background-color: white;
   box-shadow: 0 4px 9px 0 #375c821c; */
-  font-family: "PT Sans", sans-serif;
 }
 
 .day-title {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
   font-size: 34px;
   line-height: 40px;
   /* identical to box height */
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   letter-spacing: 0.25px;
 
@@ -25,13 +22,17 @@
 }
 
 .day-container {
+  padding: 0 48px;
+}
+
+.day-events-container {
   width: 420px;
   height: 644px;
   left: 0px;
   top: 51px;
   overflow-y: scroll;
   background: #ffffff;
-  box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2),
+  /* box-shadow: inset 0px 3px 5px rgba(0, 0, 0, 0.2),
     inset 0px 1px 18px rgba(0, 0, 0, 0.12),
-    inset 0px 6px 10px rgba(0, 0, 0, 0.14);
+    inset 0px 6px 10px rgba(0, 0, 0, 0.14); */
 }

@@ -36,7 +36,7 @@ function ActivityCard(props) {
     <Styled styles={styles}>
       <Card className="card">
         <CardActionArea>
-          <CardMedia image="../img/horse.jpg" title="mele" />
+          <CardMedia src='/img/horse.jpg' title='mele' />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {activity.title}
@@ -55,13 +55,15 @@ function ActivityCard(props) {
               id="panel1d-header"
             >
               <div className="icon-container">
-                <div className="icon-label">
-                  <MonetizationOnRoundedIcon />
-                  <Typography>{`${activity.price || 1}€`}</Typography>
-                </div>
-                <div className="icon-label">
-                  <AccessTimeIcon />
-                  <Typography>{`${activity.duration || 1}h`}</Typography>
+                <div className="price-duration-container">
+                  <div className="icon-label">
+                    <MonetizationOnRoundedIcon />
+                    <Typography>{`${activity.price || 1}€`}</Typography>
+                  </div>
+                  <div className="icon-label">
+                    <AccessTimeIcon />
+                    <Typography>{`${activity.duration || 1}h`}</Typography>
+                  </div>
                 </div>
                 <div className="icon-expand">
                   {expanded === "panel1" ? (
