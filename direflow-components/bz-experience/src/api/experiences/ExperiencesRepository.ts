@@ -62,7 +62,7 @@ export default class ExperiencesRepository {
       const images = [];
       const imageGallery = experience.ImageGallery;
       if (imageGallery !== undefined) {
-        imageGallery.map(image =>  images.push(image.ImageUrl));
+        imageGallery.map(image => images.push(image.ImageUrl));
       }
 
       let startLatitude;

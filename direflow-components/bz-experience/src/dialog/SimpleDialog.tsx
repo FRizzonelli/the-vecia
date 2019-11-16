@@ -56,6 +56,7 @@ function SimpleDialog(props) {
             <ActivityCard
               keyword={keywords[Math.floor(Math.random() * keywords.length)]}
               activity={act}
+              isPicked={pickedActivities.filter(experience => experience.title === act.title).length > 0}
               onToggleActivityPresence={act => {
                 setPickedActivities([...pickedActivities, act]);
               }}
