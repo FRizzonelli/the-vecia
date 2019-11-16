@@ -1,16 +1,59 @@
-.app {
-  width: 650px;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 5px;
-  border: 1px solid #E6EEF0;
-  padding: 16px;
-  box-sizing: border-box;
-  background-color: white;
-  box-shadow: 0 4px 9px 0 #375c821c;
-  font-family: 'Roboto';
+@media only screen and (min-width: 650px) {
+  .app {
+    width: 650px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #e6eef0;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 4px 9px 0 #375c821c;
+    font-family: "Roboto";
+  }
+  input {
+    border-width: 0px;
+    border-radius: 8px;
+    padding: 3px 5px;
+    box-shadow: 0 4px 4px 0 #375c821c;
+    width: 600px;
+    height: 36px;
+    background-color: #e8e8e8;
+    font-family: "Roboto";
+    font-size: 16px;
+    margin-top: 4px;
+  }
+}
+
+@media only screen and (max-width: 649px) {
+  .app {
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #e6eef0;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 4px 9px 0 #375c821c;
+    font-family: "Roboto";
+  }
+  input {
+    border-width: 0px;
+    border-radius: 8px;
+    padding: 3px 5px;
+    box-shadow: 0 4px 4px 0 #375c821c;
+    width: 300px;
+    height: 36px;
+    background-color: #e8e8e8;
+    font-family: "Roboto";
+    font-size: 16px;
+    margin-top: 4px;
+  }
 }
 
 .logo {
@@ -18,25 +61,12 @@
   margin: -16px;
 }
 
-input {
-  border-width: 0px;
-  border-radius: 8px;
-  padding: 3px 5px;
-  box-shadow: 0 4px 4px 0 #375c821c;
-  width: 600px;
-  height: 36px;
-  background-color: #E8E8E8;
-  font-family: 'Roboto';
-  font-size: 16px;
-  margin-top: 4px;
-}
-
 .date-picker {
   margin-top: 16px;
 }
 
 .button {
-  background-color: #A9BF02;
+  background-color: #a9bf02;
   /* Green */
   border: none;
   color: white;
@@ -52,5 +82,5 @@ input {
 }
 
 .highlight {
-  color: #A9BF02;
+  color: #a9bf02;
 }
