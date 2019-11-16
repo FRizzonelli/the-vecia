@@ -3,7 +3,8 @@ import Button from "@material-ui/core/Button";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 import { Styled } from "direflow-component";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
+import ExperiencesRepository from "./api/experiences/ExperiencesRepository";
 import styles from "./App.css";
 import { IComponentAttributes, IComponentProperties } from "./componentProperties";
 import SimpleDialog from "./dialog/SimpleDialog";
@@ -14,6 +15,13 @@ const App: FC<IProps> = props => {
   const [startingDate, setStartingDate] = useState(null);
   const [endingDate, setEndingDateChange] = useState(null);
   const [open, setOpen] = React.useState(false);
+  const [activities, setActivities] = useState([]);
+
+  useEffect(() => {
+    new ExperiencesRepository("it").getAllExperiences(data => {
+      setActivities(data);
+    });
+  }, []);
 
   const handleClick = () => {
     setOpen(true);
@@ -64,7 +72,13 @@ const App: FC<IProps> = props => {
             Cerca
           </Button>
         </MuiPickersUtilsProvider>
-        <SimpleDialog open={open} onClose={handleClose} />
+        <SimpleDialog
+          open={open}
+          onClose={handleClose}
+          startingDate={startingDate}
+          endingDate={endingDate}
+          activities={activities}
+        />
       </div>
     </Styled>
   );
