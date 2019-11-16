@@ -7,12 +7,12 @@ import { Experience } from './entities/experiencesEntities';
  * This repository pattern implementation is very basic and partially wrong. Time constraints
  * lead to this decision.
  */
-export class ExperiencesRepository {
+export default class ExperiencesRepository {
   private _BASE_URL = 'http://tourism.opendatahub.bz.it/api';
   private _ACTIVITIES_URL = `${this._BASE_URL}/Activity?pagenumber=1&pagesize=10&activitytype=1023`;
   private _EVENTS_URL = `${this._BASE_URL}/Event?pagenumber=1&pagesize=10&sort=desc`;
 
-  private _FREE_PRICE = '0.00€';
+  private _FREE_PRICE = 0;
   private _NOT_AVAILABLE = 'N/A';
   private _DEFAULT_LATITUDE = 46.71503;
   private _DEFAULT_LONGITUDE = 11.65598;
@@ -116,6 +116,6 @@ export class ExperiencesRepository {
   }
 
   private getPrice() {
-    return `${Math.floor(Math.random() * 100)}€`;
+    return Math.floor(Math.random() * 100);
   }
 }

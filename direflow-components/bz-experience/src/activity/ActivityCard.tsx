@@ -39,17 +39,14 @@ function ActivityCard(props) {
           <CardMedia image="../img/horse.jpg" title="mele" />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {activity.name}
+              {activity.title}
             </Typography>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography> */}
           </CardContent>
         </CardActionArea>
         <CardActions>
           <MuiExpansionPanel
             square={true}
+            elevation={0}
             expanded={expanded === "panel1"}
             onChange={handleChange("panel1")}
           >
@@ -60,7 +57,7 @@ function ActivityCard(props) {
               <div className="icon-container">
                 <div className="icon-label">
                   <MonetizationOnRoundedIcon />
-                  <Typography>{`${activity.cost || 1}€`}</Typography>
+                  <Typography>{`${activity.price || 1}€`}</Typography>
                 </div>
                 <div className="icon-label">
                   <AccessTimeIcon />
@@ -76,18 +73,19 @@ function ActivityCard(props) {
               </div>
             </MuiExpansionPanelSummary>
             <MuiExpansionPanelDetails>
-              <div className="description-container">
-                <Typography>
-                  {activity.description ||
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed euismod libero, et malesuada dolor. Vivamus dapibus in turpis sit amet varius. In viverra libero ut diam scelerisque tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis ante sed erat pellentesque auctor. Etiam gravida venenatis lacus. Nullam ultrices auctor est, gravida efficitur magna blandit et. Donec cursus lorem et nisi lobortis, ut fermentum eros aliquet."}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleJoin}
-                >
-                  Partecipa
-                </Button>
+              <div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: activity.description }}
+                />
+                <div className="description-container">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleJoin}
+                  >
+                    Partecipa
+                  </Button>
+                </div>
               </div>
             </MuiExpansionPanelDetails>
           </MuiExpansionPanel>

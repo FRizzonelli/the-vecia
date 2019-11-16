@@ -8,7 +8,7 @@ import ActivityCard from "../activity/ActivityCard";
 import styles from "./SimpleDialog.css";
 
 function SimpleDialog(props) {
-  const { onClose, open, startingDate, endingDate } = props;
+  const { onClose, open, startingDate, endingDate, activities } = props;
 
   const days = [];
   for (
@@ -33,11 +33,7 @@ function SimpleDialog(props) {
   ));
 
   function renderActivities(day) {
-    const dayActivities = day.activities || [
-      {
-        name: "mele mele"
-      }
-    ];
+    const dayActivities = activities;
     return (
       <div>
         {dayActivities.map((act, id) => (
