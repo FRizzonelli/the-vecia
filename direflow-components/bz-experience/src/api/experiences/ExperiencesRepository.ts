@@ -123,6 +123,6 @@ export default class ExperiencesRepository {
   }
 
   private getPrice() {
-    return Math.floor(Math.random() * 100);
+    return Math.floor(Math.random() * 40);
   }
 }
