@@ -8,23 +8,6 @@ import React, { useState } from 'react';
 import ActivityCard from '../activity/ActivityCard';
 import styles from './SimpleDialog.css';
 
-const keywords = [
-  'nature',
-  'landscape',
-  'mountain',
-  'skiing',
-  'snow',
-  'alps',
-  'cows',
-  'sheeps',
-  'pasta',
-  'speck',
-  'bolzano',
-  'bressanone',
-  'brunico',
-  'merano'
-];
-
 function SimpleDialog(props) {
   const [pickedActivities, setPickedActivities] = useState([]);
   const { onClose, open, startingDate, endingDate, activities } = props;
@@ -54,7 +37,6 @@ function SimpleDialog(props) {
         {dayActivities.map((act, id) => (
           <div key={id}>
             <ActivityCard
-              keyword={keywords[Math.floor(Math.random() * keywords.length)]}
               activity={act}
               isPicked={pickedActivities.filter(experience => experience.title === act.title).length > 0}
               onToggleActivityPresence={act => {
