@@ -14,7 +14,7 @@ const weatherDescriptions = [
  * lead to this decision.
  */
 export class WeatherRepository {
-  private _API_KEY = '8983b2704136dd20c5b462a91f852738';
+  private _API_KEY = 'afe7db289dfb30f6f1135a33916c73e0';
   private _BASE_URL = `https://api.openweathermap.org/data/2.5/weather?appid=${this._API_KEY}&units=metric`;
 
   private _LATITUDE_URL_PARAM = 'lat';
