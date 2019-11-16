@@ -36,7 +36,7 @@ function ActivityCard(props) {
     <Styled styles={styles}>
       <Card className="card">
         <CardActionArea>
-          <CardMedia src='/img/horse.jpg' title='mele' />
+          <img className="card-image" src={`https://source.unsplash.com/1600x900/?${props.keyword}`} />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               {activity.title}
