@@ -28,6 +28,17 @@
   box-shadow: 0 4px 9px 0 #375c821c; */
 }
 
+.recap-list-container {
+  max-height: 600px;
+  /* align-items: center;
+  border-radius: 5px;
+  border: 1px solid #e6eef0;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
+  box-shadow: 0 4px 9px 0 #375c821c; */
+}
+
 .day-title {
   font-size: 34px;
   line-height: 40px;

@@ -11,6 +11,7 @@ import styles from "./SimpleDialog.css";
 
 function SimpleDialog(props) {
   const [pickedActivities, setPickedActivities] = useState([]);
+  const [isPurchase, setPurchase] = useState(false);
   const { onClose, open, startingDate, endingDate, activities } = props;
 
   const days = [];
@@ -71,7 +72,25 @@ function SimpleDialog(props) {
     );
   }
 
-  function handleShopActivities() {}
+  function renderPickedActivities() {
+    return (
+      <div className="card-container">
+        {pickedActivities.map((act, id) => (
+          <div key={id}>
+            <ActivityCard
+              activity={act}
+              onToggleActivityPresence={act => {}}
+              isPicked={false}
+            />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  function handleShopActivities() {
+    setPurchase(true);
+  }
 
   return (
     <Dialog
@@ -82,28 +101,50 @@ function SimpleDialog(props) {
       maxWidth={days.length > 2 ? "lg" : "md"}
     >
       <Styled styles={styles}>
-        <div className="dialog-main-container">
-          <div className="pattern">
-            <img src="./mountains.png" style={{ height: 200 }} />
+        {!isPurchase ? (
+          <div className="dialog-main-container">
+            <div className="pattern">
+              <img src="./mountains.png" style={{ height: 200 }} />
+            </div>
+            <DialogTitle id="simple-dialog-title">
+              Scegli le tue attività per le vacanze!
+            </DialogTitle>
+            <DialogContent>
+              <div className="days-list-container">{renderDays}</div>
+            </DialogContent>
+            <div className="footer">
+              <h3>{`${pickedActivities.length} attività`}</h3>
+              <h3>{`Totale ${sumBy(pickedActivities, a => a.price)}€`}</h3>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleShopActivities}
+              >
+                Procedi
+              </Button>
+            </div>
           </div>
-          <DialogTitle id="simple-dialog-title">
-            Choose your activities!
-          </DialogTitle>
-          <DialogContent>
-            <div className="days-list-container">{renderDays}</div>
-          </DialogContent>
-          <div className="footer">
-            <h3>{`${pickedActivities.length} attività`}</h3>
-            <h3>{`Totale ${sumBy(pickedActivities, a => a.price)}€`}</h3>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleShopActivities}
-            >
-              Compra
-            </Button>
+        ) : (
+          <div className="dialog-main-container">
+            <DialogTitle id="simple-dialog-title">Checkout!</DialogTitle>
+            <DialogContent>
+              <div className="recap-list-container">
+                {renderPickedActivities()}
+              </div>
+            </DialogContent>
+            <div className="footer">
+              <h3>{`${pickedActivities.length} attività`}</h3>
+              <h3>{`Totale ${sumBy(pickedActivities, a => a.price)}€`}</h3>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleShopActivities}
+              >
+                Compra
+              </Button>
+            </div>
           </div>
-        </div>
+        )}
       </Styled>
     </Dialog>
   );
